@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backgrounds\Background.cs" />
+    <Compile Include="Backgrounds\StarsBackground.cs" />
     <Compile Include="Interface\Menu.cs" />
     <Compile Include="Interface\TitleMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

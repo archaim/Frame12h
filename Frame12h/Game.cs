@@ -1,4 +1,5 @@
-﻿using Frame12h.Interface;
+﻿using Frame12h.Backgrounds;
+using Frame12h.Interface;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
@@ -10,10 +11,12 @@ namespace Frame12h
 {
     public class Game : GameWindow
     {
-        private static int ProjectionWidth = 800;
-        private static int ProjectionHeight = 600;
+        public const int ProjectionWidth = 800;
+        public const int ProjectionHeight = 600;
 
         public Menu Menu { get; set; }
+
+        public Background Background { get; set; }
 
         [STAThread]
         static void Main()
@@ -33,6 +36,11 @@ namespace Frame12h
             VSync = VSyncMode.On;
 
             Menu = new TitleMenu(this);
+
+            Background = new StarsBackground(this);
+            Background.Color = Color4.Yellow;
+            Background.Layers = 10;
+            Background.Start();
         }
 
         protected override void OnLoad(EventArgs E)
@@ -69,6 +77,8 @@ namespace Frame12h
                     this.WindowState = WindowState.Normal;
 
             Menu.Update();
+
+            Background.Update();
         }
 
         protected override void OnRenderFrame(FrameEventArgs E)
@@ -90,6 +100,8 @@ namespace Frame12h
             DrawBorder();
 
             Menu.Render();
+
+            Background.Render();
 
             SwapBuffers();
         }
